@@ -128,24 +128,24 @@
       });
       opening.dataset.phase = "zoom";
 
-      const timing = { duration: 1500, fill: "forwards" };
+      const timing = { duration: 900, fill: "forwards" };
       const zoom = animate(stage, [{ transform: "scale(1)" }, { transform: "scale(1.065)" }], {
         ...timing,
         easing: "cubic-bezier(0.22, 0.61, 0.36, 1)",
       });
       const dissolve = animate(photo, [
         { opacity: 1, offset: 0 },
-        { opacity: 1, offset: 0.3 },
+        { opacity: 1, offset: 0.2 },
         { opacity: 0, offset: 0.96 },
         { opacity: 0, offset: 1 },
       ], timing);
       const appear = animate(logo, [
         { opacity: 0, offset: 0 },
-        { opacity: 0, offset: 0.36 },
+        { opacity: 0, offset: 0.25 },
         { opacity: 1, offset: 0.96 },
         { opacity: 1, offset: 1 },
       ], timing);
-      phaseTimer = window.setTimeout(() => { opening.dataset.phase = "dissolve"; }, 500);
+      phaseTimer = window.setTimeout(() => { opening.dataset.phase = "dissolve"; }, 200);
       await Promise.all([zoom.finished, dissolve.finished, appear.finished]);
       if (finished) return;
 
@@ -168,9 +168,9 @@
       const settle = animate(logo, [
         { transform: `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${from.width / to.width})` },
         { transform: "translate(0, 0) scale(1)" },
-      ], { duration: 450, fill: "forwards", easing: "cubic-bezier(0.22, 1, 0.36, 1)" });
+      ], { duration: 300, fill: "forwards", easing: "cubic-bezier(0.22, 1, 0.36, 1)" });
       animate(opening.querySelector(".opening-backdrop"), [{ opacity: 1 }, { opacity: 0 }], {
-        duration: 350,
+        duration: 240,
         fill: "forwards",
         easing: "ease-out",
       });
