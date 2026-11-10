@@ -100,6 +100,82 @@ svg {
   transform: translateY(0);
 }
 
+/* Opening scene: both image layers share one registered camera frame. */
+.opening {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.intro-pending .opening {
+  display: block;
+}
+
+.opening-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+}
+
+.opening-stage {
+  position: absolute;
+  transform-origin: 54% 36%;
+  will-change: transform;
+}
+
+.opening-photo,
+.opening-logo {
+  display: block;
+  position: absolute;
+  max-width: none;
+  pointer-events: none;
+  user-select: none;
+}
+
+.opening-photo {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.opening-logo {
+  height: auto;
+  opacity: 0;
+}
+
+.opening-logo.is-settling {
+  position: fixed;
+  transform-origin: 0 0;
+}
+
+.site-header,
+main,
+.site-footer {
+  transition: opacity 350ms ease;
+}
+
+.intro-pending .site-header,
+.intro-pending main,
+.intro-pending .site-footer {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-pending.intro-revealing .site-header,
+.intro-pending.intro-revealing main,
+.intro-pending.intro-revealing .site-footer {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.intro-pending .hero-art img {
+  opacity: 0;
+}
+
 /* Header */
 .site-header {
   display: flex;
@@ -151,18 +227,24 @@ nav a:hover,
   height: 14px;
 }
 
-/* The hero fills the space left between the header and setup guide. */
+/* A centered mark, with the headline and download below. */
 .hero {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: clamp(24px, 6vw, 88px);
+  justify-content: center;
+  gap: clamp(8px, 1.5svh, 14px);
   min-height: 0;
-  padding-block: 12px;
+  padding-block: 8px;
+}
+
+.hero-copy {
+  flex: 0 0 auto;
+  text-align: center;
 }
 
 h1 {
-  font-size: clamp(46px, min(6.5vw, 10svh), 84px);
+  font-size: clamp(28px, min(5vw, 6svh), 50px);
   font-weight: 500;
   line-height: 1.01;
   letter-spacing: -0.055em;
@@ -212,15 +294,17 @@ h1 span {
 
 .hero-art {
   display: flex;
+  flex: 1 1 0;
   align-items: center;
   justify-content: center;
+  width: min(68vw, 520px);
   min-height: 0;
+  max-height: 24svh;
 }
 
 .hero-art img {
   width: 100%;
-  height: auto;
-  max-height: 30svh;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -353,7 +437,7 @@ kbd {
   font-size: 9px;
 }
 
-/* Narrow screens keep the artwork beside the title to save vertical space. */
+/* Compact spacing keeps the centered layout within small screens. */
 @media (max-width: 700px) {
   .wordmark {
     gap: 8px;
@@ -371,13 +455,12 @@ kbd {
   }
 
   .hero {
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 12px;
-    padding-block: 10px;
+    gap: 8px;
+    padding-block: 6px;
   }
 
   h1 {
-    font-size: clamp(32px, 9vw, 48px);
+    font-size: clamp(26px, 7.5vw, 36px);
   }
 
   .hero-description {
@@ -505,7 +588,7 @@ kbd {
   }
 
   h1 {
-    font-size: clamp(32px, 9svh, 44px);
+    font-size: clamp(24px, 7svh, 32px);
   }
 
   .hero-description {

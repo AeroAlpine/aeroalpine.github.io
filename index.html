@@ -10,9 +10,18 @@
     <meta property="og:description" content="A fresh take on your Minecraft experience. Air Client by AeroAlpine.">
     <title>AeroAlpine — A little more Air.</title>
     <link rel="icon" href="./assets/aeroalpine.png" type="image/png">
+    <link rel="preload" as="image" href="./assets/mountain-intro.png" fetchpriority="high" media="(prefers-reduced-motion: no-preference)">
     <link rel="stylesheet" href="./styles.css">
+    <script src="./intro.js"></script>
   </head>
   <body>
+    <div class="opening" aria-hidden="true">
+      <div class="opening-backdrop"></div>
+      <div class="opening-stage">
+        <img class="opening-photo" src="./assets/mountain-intro.png" alt="" width="1774" height="887" fetchpriority="high">
+        <img class="opening-logo" src="./assets/aeroalpine-mountains.png" alt="" width="1774" height="887">
+      </div>
+    </div>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header wrap">
       <a class="wordmark" href="#" aria-label="AeroAlpine home">
@@ -27,16 +36,16 @@
 
     <main id="main">
       <section class="hero wrap" aria-labelledby="hero-title">
+        <figure class="hero-art">
+          <img src="./assets/aeroalpine-mountains.png" alt="The AeroAlpine mountains" width="1774" height="887" fetchpriority="high">
+        </figure>
         <div class="hero-copy">
-          <h1 id="hero-title">A little<br>more <span>Air.</span></h1>
+          <h1 id="hero-title">A little more <span>Air.</span></h1>
           <p class="hero-description">A fresh take on Minecraft.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="https://github.com/AeroAlpine/Air-Client/releases" target="_blank" rel="noopener noreferrer">Get Air Client <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5"/></svg></a>
           </div>
         </div>
-        <figure class="hero-art">
-          <img src="./assets/aeroalpine-mountains.png" alt="The AeroAlpine mountains" width="1774" height="887" fetchpriority="high">
-        </figure>
       </section>
 
       <section class="get-started wrap" id="get-started" aria-labelledby="start-title">
