@@ -2,16 +2,39 @@
 
 /* Colors and document defaults */
 :root {
+  color-scheme: dark;
+  --paper: #081321;
+  --ink: #edf4fb;
+  --muted: #a4b1c2;
+  --blue: #79c7f5;
+  --focus: #94d5ff;
+  --button-bg: #9ed8fb;
+  --button-ink: #081827;
+  --button-hover: #c4e9ff;
+  --link-underline: #52677f;
+  --selection-bg: #284c68;
+  --selection-ink: #fff;
+  --toggle-hover: rgb(255 255 255 / 7%);
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root[data-theme="light"] {
   color-scheme: light;
   --paper: #fafbfc;
   --ink: #102133;
   --muted: #647180;
   --blue: #1b78b5;
   --focus: #0875b5;
-  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  --button-bg: #102133;
+  --button-ink: #fff;
+  --button-hover: #1d4466;
+  --link-underline: #b6c1c9;
+  --selection-bg: #c8e7f6;
+  --selection-ink: #102133;
+  --toggle-hover: rgb(16 33 51 / 6%);
 }
 
 * {
@@ -31,6 +54,7 @@ body {
   color: var(--ink);
   font-size: 14px;
   line-height: 1.5;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 main {
@@ -47,21 +71,23 @@ p {
   margin: 0;
 }
 
-a {
+a,
+button {
   color: inherit;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   border-radius: 3px;
   outline: 3px solid var(--focus);
   outline-offset: 4px;
 }
 
 ::selection {
-  background: #c8e7f6;
-  color: var(--ink);
+  background: var(--selection-bg);
+  color: var(--selection-ink);
 }
 
 img {
@@ -92,8 +118,8 @@ svg {
   z-index: 10;
   padding: 8px 16px;
   transform: translateY(-200%);
-  background: var(--ink);
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-ink);
 }
 
 .skip-link:focus {
@@ -227,6 +253,45 @@ nav a:hover,
   height: 14px;
 }
 
+/* The accessible switch keeps its choice across visits. */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
+
+.theme-toggle:hover {
+  background: var(--toggle-hover);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle .icon-moon,
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
+}
+
 /* A centered mark, with the headline and download below. */
 .hero {
   display: flex;
@@ -275,16 +340,16 @@ h1 span {
   border-radius: 5px;
   font-size: 12px;
   font-weight: 550;
-  transition: background 0.15s;
+  transition: background-color 0.15s;
 }
 
 .button-primary {
-  background: var(--ink);
-  color: #fff;
+  background: var(--button-bg);
+  color: var(--button-ink);
 }
 
 .button-primary:hover {
-  background: #1d4466;
+  background: var(--button-hover);
 }
 
 .button svg {
@@ -383,7 +448,7 @@ h2 {
 
 .install-steps a {
   text-decoration: underline;
-  text-decoration-color: #b6c1c9;
+  text-decoration-color: var(--link-underline);
   text-underline-offset: 3px;
 }
 
@@ -450,7 +515,7 @@ kbd {
   }
 
   nav {
-    gap: 16px;
+    gap: 10px;
     font-size: 11px;
   }
 
@@ -630,6 +695,28 @@ kbd {
   .site-footer {
     gap: 4px 16px;
     padding-block: 4px 8px;
+  }
+}
+
+@media (max-width: 360px) {
+  .wordmark {
+    gap: 7px;
+    font-size: 16px;
+  }
+
+  .wordmark img {
+    width: 26px;
+    height: 26px;
+  }
+
+  nav {
+    gap: 8px;
+    font-size: 10px;
+  }
+
+  .theme-toggle {
+    width: 30px;
+    height: 30px;
   }
 }
 
