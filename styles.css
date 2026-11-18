@@ -14,27 +14,10 @@
   --link-underline: #52677f;
   --selection-bg: #284c68;
   --selection-ink: #fff;
-  --toggle-hover: rgb(255 255 255 / 7%);
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-}
-
-:root[data-theme="light"] {
-  color-scheme: light;
-  --paper: #fafbfc;
-  --ink: #102133;
-  --muted: #647180;
-  --blue: #1b78b5;
-  --focus: #0875b5;
-  --button-bg: #102133;
-  --button-ink: #fff;
-  --button-hover: #1d4466;
-  --link-underline: #b6c1c9;
-  --selection-bg: #c8e7f6;
-  --selection-ink: #102133;
-  --toggle-hover: rgb(16 33 51 / 6%);
 }
 
 * {
@@ -54,7 +37,6 @@ body {
   color: var(--ink);
   font-size: 14px;
   line-height: 1.5;
-  transition: background-color 180ms ease, color 180ms ease;
 }
 
 main {
@@ -71,15 +53,13 @@ p {
   margin: 0;
 }
 
-a,
-button {
+a {
   color: inherit;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-a:focus-visible,
-button:focus-visible {
+a:focus-visible {
   border-radius: 3px;
   outline: 3px solid var(--focus);
   outline-offset: 4px;
@@ -251,45 +231,6 @@ nav a:hover,
 .nav-github svg {
   width: 14px;
   height: 14px;
-}
-
-/* The accessible switch keeps its choice across visits. */
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  padding: 6px;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--ink);
-  font: inherit;
-  cursor: pointer;
-}
-
-.theme-toggle[hidden] {
-  display: none;
-}
-
-.theme-toggle:hover {
-  background: var(--toggle-hover);
-}
-
-.theme-toggle svg {
-  width: 18px;
-  height: 18px;
-}
-
-.theme-toggle .icon-moon,
-:root[data-theme="light"] .theme-toggle .icon-sun {
-  display: none;
-}
-
-:root[data-theme="light"] .theme-toggle .icon-moon {
-  display: block;
 }
 
 /* A centered mark, with the headline and download below. */
@@ -712,11 +653,6 @@ kbd {
   nav {
     gap: 8px;
     font-size: 10px;
-  }
-
-  .theme-toggle {
-    width: 30px;
-    height: 30px;
   }
 }
 
